@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>证书查询系统 - 深圳市职业技能提升公益性培训</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Noto Sans', system-ui, sans-serif;
+            background: linear-gradient(145deg, #e9f0f5 0%, #d9e2ec 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+        }
+        .card {
+            max-width: 700px;
+            width: 100%;
+            background: white;
+            border-radius: 48px 32px 48px 32px;
+            box-shadow: 0 25px 45px -12px rgba(0,0,0,0.25);
+            overflow: hidden;
+        }
+        .header {
+            background: #003153;
+            padding: 32px 28px 24px 28px;
+            color: white;
+        }
+        .header h1 {
+            font-size: 1.7rem;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+        .header .sub {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            border-left: 3px solid #ffb347;
+            padding-left: 12px;
+            margin-top: 10px;
+        }
+        .content {
+            padding: 32px 28px 40px;
+        }
+        .input-group {
+            margin-bottom: 24px;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            color: #1e2a3e;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        input {
+            width: 100%;
+            padding: 14px 18px;
+            font-size: 1rem;
+            border: 2px solid #cbd5e1;
+            border-radius: 28px;
+            transition: all 0.2s;
+            outline: none;
+            background: #fefefe;
+        }
+        input:focus {
+            border-color: #003153;
+            box-shadow: 0 0 0 3px rgba(0,49,83,0.1);
+        }
+        button {
+            width: 100%;
+            background: #003153;
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            font-size: 1.05rem;
+            font-weight: bold;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 10px;
+            margin-bottom: 28px;
+        }
+        button:hover {
+            background: #001f3a;
+        }
+        .result {
+            background: #f8fafc;
+            border-radius: 28px;
+            padding: 20px 24px;
+            border-left: 6px solid #ffb347;
+            transition: all 0.2s;
+        }
+        .result h3 {
+            color: #003153;
+            margin-bottom: 16px;
+            font-size: 1.25rem;
+        }
+        .cert-item {
+            display: flex;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            flex-wrap: wrap;
+        }
+        .cert-label {
+            width: 100px;
+            font-weight: 700;
+            color: #334155;
+        }
+        .cert-value {
+            flex: 1;
+            color: #0f172a;
+        }
+        .cert-image {
+            margin-top: 16px;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 20px;
+        }
+        .cert-image img {
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+        .cert-image a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #003153;
+            font-size: 0.85rem;
+        }
+        .error {
+            background: #fff5f0;
+            border-left-color: #dc2626;
+            color: #991b1b;
+        }
+        .footer-note {
+            margin-top: 24px;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #5c6f87;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 20px;
+        }
+        .badge {
+            background: #e6f0fa;
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            color: #003153;
+        }
+        .demo-hint {
+            background: #fef9e6;
+            padding: 12px 16px;
+            border-radius: 20px;
+            margin-bottom: 24px;
+            font-size: 0.8rem;
+            border: 1px solid #ffe0a3;
+        }
+        .demo-hint summary {
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .btn-download {
+            background: #ffb347;
+            color: #1e2a3e;
+            margin-top: 12px;
+            width: auto;
+            padding: 8px 20px;
+            display: inline-block;
+        }
+        @media (max-width: 500px) {
+            .cert-label {
+                width: 85px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <div class="header">
+        <h1>📜 证书查询系统</h1>
+        <div class="sub">深圳市职业技能提升公益性培训<br>AI人力资源管理</div>
+    </div>
+    <div class="content">
+        <details class="demo-hint">
+            <summary>📌 演示数据测试账号（点击展开）</summary>
+            <p>
+                👤 张敏 &nbsp;|&nbsp; 440301199003150023<br>
+                👤 李华明 &nbsp;|&nbsp; 440305198712120034<br>
+                💡 输入以上任意一组即可测试查询
+            </p>
+        </details>
+        <div class="input-group">
+            <label>👤 学员姓名</label>
+            <input type="text" id="fullName" placeholder="例：张敏" autocomplete="off">
+        </div>
+        <div class="input-group">
+            <label>🆔 身份证号</label>
+            <input type="text" id="idNumber" placeholder="请输入完整的身份证号码" autocomplete="off">
+        </div>
+        <button id="searchBtn">🔍 立即查询证书</button>
+        <div id="resultArea" class="result" style="display: none;"></div>
+        <div class="footer-note">
+            <span class="badge">官方认证</span><br>
+            发证单位：深圳市夜大传媒有限公司
+        </div>
+    </div>
+</div>
+
+<script>
+    // ============================================================
+    // 📌 证书数据库（演示数据，包含证书图片路径）
+    // ============================================================
+    // ⚠️ 批量上传时，只需按此格式添加数据即可
+    // 图片建议使用 JPG/PNG 格式，放在 images/ 文件夹下
+    // ============================================================
+        const certificates = [
+        { name: "张敏", idCard: "440508199602564789", certNo: "GY2026050500001", issueDate: "2026-06-15", certImage: "images/zhangmin.jpg" },
+        { name: "李华明", idCard: "440508199602564709", certNo: "GY2026050500002", issueDate: "2026-06-15", certImage: "images/lihuaming.jpg" },
+        { name: "王丽娜", idCard: "440508199602564719", certNo: "GY2026050500003", issueDate: "2026-06-15", certImage: "images/wanglina.jpg" }
+    ];
+
+    const PROGRAM_NAME = "深圳市职业技能提升公益性培训-AI人力资源管理";
+    const ISSUER = "深圳市夜大传媒有限公司";
+
+    const nameInput = document.getElementById('fullName');
+    const idInput = document.getElementById('idNumber');
+    const searchBtn = document.getElementById('searchBtn');
+    const resultArea = document.getElementById('resultArea');
+
+    function performQuery() {
+        const name = nameInput.value.trim();
+        const idNumber = idInput.value.trim();
+
+        if (!name) { showError("请输入学员姓名"); return; }
+        if (!idNumber) { showError("请输入身份证号"); return; }
+
+        const found = certificates.find(item => item.name === name && item.idCard === idNumber);
+
+        if (!found) {
+            showError("未查询到对应证书，请核对姓名与身份证号");
+            return;
+        }
+
+        displayCertificate(found);
+    }
+
+    function showError(msg) {
+        resultArea.style.display = "block";
+        resultArea.className = "result error";
+        resultArea.innerHTML = `<h3>⚠️ 查询失败</h3><div>${escapeHtml(msg)}</div>`;
+    }
+
+    function displayCertificate(cert) {
+        resultArea.style.display = "block";
+        resultArea.className = "result";
+        
+        let imageHtml = '';
+        if (cert.certImage) {
+            imageHtml = `
+                <div class="cert-image">
+                    <img src="${cert.certImage}" alt="证书图片" onclick="window.open(this.src)">
+                    <br>
+                    <a href="${cert.certImage}" download="证书_${cert.name}.jpg">📎 点击下载证书图片</a>
+                </div>
+            `;
+        } else {
+            imageHtml = `<div class="cert-image" style="color:#999;">⚠️ 证书图片暂未上传</div>`;
+        }
+
+        resultArea.innerHTML = `
+            <h3>✅ 证书验证成功</h3>
+            <div class="cert-item"><div class="cert-label">学员姓名</div><div class="cert-value">${escapeHtml(cert.name)}</div></div>
+            <div class="cert-item"><div class="cert-label">培训项目</div><div class="cert-value">${PROGRAM_NAME}</div></div>
+            <div class="cert-item"><div class="cert-label">发证单位</div><div class="cert-value">${ISSUER}</div></div>
+            <div class="cert-item"><div class="cert-label">证书编号</div><div class="cert-value">${escapeHtml(cert.certNo)}</div></div>
+            <div class="cert-item"><div class="cert-label">发证日期</div><div class="cert-value">${cert.issueDate}</div></div>
+            ${imageHtml}
+        `;
+    }
+
+    function escapeHtml(str) {
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+
+    searchBtn.addEventListener('click', performQuery);
+    [nameInput, idInput].forEach(inp => {
+        inp.addEventListener('keypress', e => { if (e.key === 'Enter') performQuery(); });
+    });
+</script>
+</body>
+</html>
